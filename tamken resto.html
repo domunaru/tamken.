@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamken Resto & Cafe - Palembang</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a5c3a;
+            --primary-light: #2d8a5a;
+            --accent: #e8a838;
+            --accent-light: #f5c96a;
+            --dark: #1a1a1a;
+            --light: #f8f5f0;
+            --white: #ffffff;
+            --text: #333333;
+            --text-light: #777777;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(26, 92, 58, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .navbar.scrolled {
+            padding: 10px 0;
+            background: rgba(26, 92, 58, 0.98);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--white);
+        }
+
+        .logo-text {
+            color: var(--white);
+        }
+
+        .logo-text h3 {
+            font-size: 1.4rem;
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+
+        .logo-text span {
+            font-size: 0.7rem;
+            opacity: 0.9;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-light);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(26, 92, 58, 0.85) 0%, rgba(26, 26, 26, 0.8) 100%),
+                        url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/d6/60/97/tamken-resto-and-cafe.jpg?w=900&h=500&s=1');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px 60px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 8px 25px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--white);
+            margin-bottom: 15px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 35px;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(232, 168, 56, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--white);
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 20px;
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100px;
+            height: 100px;
+            border: 4px solid var(--accent);
+            border-radius: 10px;
+            z-index: -1;
+        }
+
+        .about-content h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .feature-item i {
+            width: 45px;
+            height: 45px;
+            background: rgba(26, 92, 58, 0.1);
+            color: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .feature-item span {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* Menu Section */
+        .menu {
+            padding: 100px 20px;
+            background: var(--light);
+        }
+
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .menu-tab {
+            padding: 12px 30px;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .menu-tab.active, .menu-tab:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .menu-card-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .menu-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .menu-card:hover .menu-card-image img {
+            transform: scale(1.1);
+        }
+
+        .menu-card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .menu-card-content {
+            padding: 25px;
+        }
+
+        .menu-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 10px;
+        }
+
+        .menu-card-header h3 {
+            font-size: 1.3rem;
+            color: var(--dark);
+        }
+
+        .menu-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        .menu-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .menu-card-footer {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-sauce {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .menu-rating {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 100px 20px;
+            background: var(--white);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            height: 280px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 92, 58, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay i {
+            color: var(--white);
+            font-size: 2rem;
+        }
+
+        .gallery-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+            height: auto;
+        }
+
+        /* Location Section */
+        .location {
+            padding: 100px 20px;
+            background: var(--light);
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: stretch;
+        }
+
+        .location-info {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .location-info h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+
+        .info-item i {
+            width: 50px;
+            height: 50px;
+            background: rgba(26, 92, 58, 0.1);
+            color: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .info-item div h4 {
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .info-item div p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .location-map {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            height: 100%;
+            min-height: 400px;
+        }
+
+        .location-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            min-height: 400px;
+        }
+
+        .map-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .map-btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 60px 20px 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .footer-links h4 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-15px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-7px);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-grid, .location-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-item.large {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item.large {
+                grid-column: span 1;
+            }
+        }
+
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            text-decoration: none;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="logo-text">
+                    <h3>Tamken</h3>
+                    <span>Resto & Cafe</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#tentang">Tentang</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#galeri">Galeri</a></li>
+                <li><a href="#lokasi">Lokasi</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="beranda">
+        <div class="hero-content">
+            <div class="hero-badge">Since 2025</div>
+            <h1>Selamat Datang di <span>Tamken</span><br>Resto & Cafe</h1>
+            <p>Nikmati pengalaman kuliner terbaik dengan hidangan Western autentik di kota Palembang. Cita rasa yang tak terlupakan dalam suasana yang nyaman.</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary">
+                    <i class="fas fa-book-open"></i> Lihat Menu
+                </a>
+                <a href="#lokasi" class="btn btn-outline">
+                    <i class="fas fa-map-marker-alt"></i> Kunjungi Kami
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="tentang">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Tentang Kami</h2>
+                <p>Mengenal lebih dekat Tamken Resto & Cafe, destinasi kuliner favorit di Palembang</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-image fade-in">
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/d6/60/97/tamken-resto-and-cafe.jpg?w=900&h=500&s=1" alt="Tamken Resto & Cafe Interior">
+                </div>
+                <div class="about-content fade-in">
+                    <h3>Kenapa Memilih Tamken?</h3>
+                    <p>Tamken Resto & Cafe hadir untuk memberikan pengalaman bersantap yang istimewa bagi Anda dan keluarga. Kami menyajikan berbagai hidangan Western berkualitas dengan bahan-bahan segar dan pilihan terbaik.</p>
+                    <p>Dengan suasana yang nyaman dan pelayanan yang ramah, Tamken menjadi tempat yang sempurna untuk berkumpul bersama teman, keluarga, atau rekan kerja.</p>
+                    <div class="features">
+                        <div class="feature-item">
+                            <i class="fas fa-utensils"></i>
+                            <span>Menu Variatif</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-leaf"></i>
+                            <span>Bahan Segar</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-couch"></i>
+                            <span>Suasana Nyaman</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-wallet"></i>
+                            <span>Harga Terjangkau</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Menu Kami</h2>
+                <p>Pilihan hidangan lezat yang siap memanjakan lidah Anda</p>
+            </div>
+
+            <div class="menu-categories fade-in">
+                <button class="menu-tab active" data-category="all">Semua Menu</button>
+                <button class="menu-tab" data-category="western">Western</button>
+                <button class="menu-tab" data-category="pasta">Pasta</button>
+            </div>
+
+            <div class="menu-grid" id="menuGrid">
+                <!-- Western Items -->
+                <div class="menu-card fade-in" data-category="western">
+                    <div class="menu-card-image">
+                        <img src="https://img.freepik.com/free-photo/front-view-tasty-meat-burger-with-cheese-salad-dark-background_140725-89597.jpg?w=800" alt="Omelette">
+                        <span class="menu-card-badge">Best Seller</span>
+                    </div>
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Omelette</h3>
+                            <span class="menu-price">Rp 25.000</span>
+                        </div>
+                        <p>Omelette spesial dengan isian sayuran dan daging, disajikan dengan kentang goreng dan saus tomat.</p>
+                        <div class="menu-card-footer">
+                            <span class="menu-sauce"><i class="fas fa-pepper-hot"></i> Saus: Tomato</span>
+                            <span class="menu-rating"><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card fade-in" data-category="western">
+                    <div class="menu-card-image">
+                        <img src="https://img.freepik.com/free-photo/top-view-vegetable-soup-with-meat-inside-plate-grey_140725-36037.jpg?w=800" alt="Zuppa Soup">
+                    </div>
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Zuppa Soup</h3>
+                            <span class="menu-price">Rp 40.000</span>
+                        </div>
+                        <p>Sup krim hangat dengan pastry renyah di atasnya, isian sayuran dan ayam yang lezat.</p>
+                        <div class="menu-card-footer">
+                            <span class="menu-sauce"><i class="fas fa-fire"></i> Hangat & Gurih</span>
+                            <span class="menu-rating"><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card fade-in" data-category="western">
+                    <div class="menu-card-image">
+                        <img src="https://img.freepik.com/free-photo/chicken-wings-barbecue-sweetly-sour-sauce-picnic-summer-menu-tasty-food-top-view-flat-lay_2829-6471.jpg?w=800" alt="Chicken Gordon Bleu">
+                        <span class="menu-card-badge">Favorit</span>
+                    </div>
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Chicken Gordon Bleu</h3>
+                            <span class="menu-price">Rp 70.000</span>
+                        </div>
+                        <p>Dada ayam goreng tepung isi keju dan ham, disajikan dengan kentang goreng dan salad segar.</p>
+                        <div class="menu-card-footer">
+                            <span class="menu-sauce"><i class="fas fa-cheese"></i> Keju & Ham</span>
+                            <span class="menu-rating"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card fade-in" data-category="western">
+                    <div class="menu-card-image">
+                        <img src="https://img.freepik.com/free-photo/grilled-chicken-breast-french-fries-white-plate_114579-2234.jpg?w=800" alt="Chicken Steak">
+                        <span class="menu-card-badge">Best Seller</span>
+                    </div>
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Chicken Steak</h3>
+                            <span class="menu-price">Rp 70.000</span>
+                        </div>
+                        <p>Steak ayam panggang juicy dengan pilihan saus BBQ, Mushroom, atau Black Pepper.</p>
+                        <div class="menu-card-footer">
+                            <span class="menu-sauce"><i class="fas fa-wine-bottle"></i> Saus: BBQ/Mushroom/Black Pepper</span>
+                            <span class="menu-rating"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card fade-in" data-category="western">
+                    <div class="menu-card-image">
+                        <img src="https://img.freepik.com/free-photo/grilled-beef-steak-dark-wooden-surface_1150-44344.jpg?w=800" alt="Sirloin Steak">
+                        <span class="menu-card-badge">Premium</span>
+                    </div>
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Sirloin Steak</h3>
+                            <span class="menu-price">Rp 135.000</span>
+                        </div>
+                        <p>Steak sirloin premium dengan marbling sempurna, pilihan saus BBQ, Mushroom, atau Black Pepper.</p>
+                        <div class="menu-card-footer">
+                            <span class="menu-sauce"><i class="fas fa-wine-bottle"></i> Saus: BBQ/Mushroom/Black Pepper</span>
+                            <span class="menu-rating"><i class="fas fa-star"></i> 5.0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pasta Items -->
+                <div class="menu-card fade-in" data-category="pasta">
+                    <div class="menu-card-image">
+                        <img src="https://images.squarespace-cdn.com/content/v1/624fa63d5ba99559345806e6/1d728946-e273-4001-a4c4-137e191a9322/EG12_EP40_Aglio+Olio+Spaghetti_1L0A9753.jpg" alt="Carbonara">
+                    </div>
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Spaghetti / Fettuccine Carbonara</h3>
+                            <span class="menu-price">Rp 40.000</span>
+                        </div>
+                        <p>Pasta creamy dengan saus carbonara klasik, taburan keju parmesan dan beef bacon.</p>
+                        <div class="menu-card-footer">
+                            <span class="menu-sauce"><i class="fas fa-cheese"></i> Creamy Carbonara</span>
+                            <span class="menu-rating"><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card fade-in" data-category="pasta">
+                    <div class="menu-card-image">
+                        <img src="https://scheckeats.com/wp-content/uploads/2021/01/aglio-e-olio-scaled.jpg" alt="Aglio E Olio">
+                        <span class="menu-card-badge">Best Seller</span>
+                    </div>
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Spaghetti / Fettuccine Aglio E Olio</h3>
+                            <span class="menu-price">Rp 40.000</span>
+                        </div>
+                        <p>Pasta klasik Italia dengan bawang putih, cabai, dan olive oil, taburan parsley segar.</p>
+                        <div class="menu-card-footer">
+                            <span class="menu-sauce"><i class="fas fa-pepper-hot"></i> Garlic & Chili</span>
+                            <span class="menu-rating"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card fade-in" data-category="pasta">
+                    <div class="menu-card-image">
+                        <img src="https://img.freepik.com/free-photo/pasta-spaghetti-with-shrimps-sauce_1220-5072.jpg?w=800" alt="Black Pepper">
+                    </div>
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Spaghetti / Fettuccine Black Pepper</h3>
+                            <span class="menu-price">Rp 40.000</span>
+                        </div>
+                        <p>Pasta dengan saus lada hitam yang kaya rasa, dengan potongan daging sapi tender.</p>
+                        <div class="menu-card-footer">
+                            <span class="menu-sauce"><i class="fas fa-pepper-hot"></i> Black Pepper Sauce</span>
+                            <span class="menu-rating"><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card fade-in" data-category="pasta">
+                    <div class="menu-card-image">
+                        <img src="https://img.freepik.com/free-photo/pasta-spaghetti-with-tomato-sauce-cheese_1150-22328.jpg?w=800" alt="Bolognaise">
+                        <span class="menu-card-badge">Favorit</span>
+                    </div>
+                    <div class="menu-card-content">
+                        <div class="menu-card-header">
+                            <h3>Spaghetti / Fettuccine Bolognaise</h3>
+                            <span class="menu-price">Rp 40.000</span>
+                        </div>
+                        <p>Pasta dengan saus daging giling khas Italia yang rich dan flavorful.</p>
+                        <div class="menu-card-footer">
+                            <span class="menu-sauce"><i class="fas fa-drumstick-bite"></i> Meat Sauce</span>
+                            <span class="menu-rating"><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px; padding: 20px; background: rgba(26,92,58,0.05); border-radius: 15px;">
+                <p style="color: var(--text-light); font-size: 0.9rem;">
+                    <i class="fas fa-info-circle" style="color: var(--primary);"></i> 
+                    <strong>Harga belum termasuk pajak & service charge.</strong> Gambar diambil: Juli 2025
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="galeri">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Galeri</h2>
+                <p>Lihat suasana dan hidangan terbaik kami</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item large fade-in">
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/d6/60/97/tamken-resto-and-cafe.jpg?w=900&h=500&s=1" alt="Tamken Interior">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="https://thumbs.dreamstime.com/b/interior-restaurant-warm-lighting-cozy-restaurant-interior-warm-lighting-wooden-tables-showcasing-337101604.jpg" alt="Cozy Interior">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="https://scheckeats.com/wp-content/uploads/2021/01/aglio-e-olio-scaled.jpg" alt="Aglio Olio">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="https://static.wixstatic.com/media/3962bf_f26ec61b5ab843258c4fcc7795bac877~mv2.jpg/v1/fill/w_568,h_378,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3962bf_f26ec61b5ab843258c4fcc7795bac877~mv2.jpg" alt="Cozy Cafe">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="https://www.shutterstock.com/image-photo/delicious-grilled-chicken-steak-served-260nw-2716498991.jpg" alt="Chicken Steak">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location" id="lokasi">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Lokasi Kami</h2>
+                <p>Kunjungi Tamken Resto & Cafe dan nikmati pengalaman bersantap terbaik</p>
+            </div>
+            <div class="location-grid">
+                <div class="location-info fade-in">
+                    <h3><i class="fas fa-map-marked-alt" style="color: var(--accent); margin-right: 10px;"></i>Informasi Lokasi</h3>
+
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Alamat</h4>
+                            <p>Jl. AKBP Cek Agus No.3, 8 Ilir, Kec. Ilir Tim. II, Kota Palembang, Sumatera Selatan 30163</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Jam Operasional</h4>
+                            <p>Senin - Minggu: 10.00 - 22.00 WIB</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Telepon</h4>
+                            <p>+62 8xx-xxxx-xxxx</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>tamkenrestocafe@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <a href="https://www.google.com/maps/search/?api=1&query=Tamken+Resto+and+Cafe+Palembang" target="_blank" class="map-btn">
+                        <i class="fas fa-directions"></i> Buka di Google Maps
+                    </a>
+                </div>
+
+                <div class="location-map fade-in">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.4336!2d104.7567!3d-2.9761!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b75e0f0f0f0f0%3A0x0!2sTamken+Resto+and+Cafe!5e0!3m2!1sen!2sid!4v1600000000000!5m2!1sen!2sid" 
+                        allowfullscreen="" 
+                        loading="lazy"
+                        title="Tamken Resto & Cafe Location">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Tamken Resto & Cafe</h3>
+                    <p>Restoran Western terbaik di Palembang dengan suasana nyaman dan hidangan berkualitas. Nikmati momen bersantap yang tak terlupakan bersama kami.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Menu Utama</h4>
+                    <ul>
+                        <li><a href="#menu">Western Food</a></li>
+                        <li><a href="#menu">Pasta</a></li>
+                        <li><a href="#menu">Steak</a></li>
+                        <li><a href="#menu">Soup</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Tautan Cepat</h4>
+                    <ul>
+                        <li><a href="#beranda">Beranda</a></li>
+                        <li><a href="#tentang">Tentang Kami</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#lokasi">Lokasi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li><a href="#">Jl. AKBP Cek Agus No.3</a></li>
+                        <li><a href="#">Palembang, Sumsel 30163</a></li>
+                        <li><a href="#">Buka: 10.00 - 22.00</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tamken Resto & Cafe. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/628xxxxxxxxxx" class="whatsapp-float" target="_blank" title="Chat via WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            const icon = this.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
+        // Menu category filter
+        const menuTabs = document.querySelectorAll('.menu-tab');
+        const menuCards = document.querySelectorAll('.menu-card');
+
+        menuTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                menuTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                this.classList.add('active');
+
+                const category = this.getAttribute('data-category');
+
+                menuCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Fade in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        fadeElements.forEach(el => fadeObserver.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
